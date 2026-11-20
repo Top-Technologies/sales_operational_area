@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Multi-company Rule: only areas of the active company are visible -->
+    <record id="operational_area_company_rule" model="ir.rule">
+        <field name="name">Operational Area Multi-Company Rule</field>
+        <field name="model_id" ref="model_operational_area"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- 1. Define Configurable Operational Areas -->
+        <record id="op_area_addis_central" model="operational.area">
+            <field name="name">Addis Ababa Central</field>
+            <field name="code">AAC</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+        </record>
+
+        <record id="op_area_hawassa" model="operational.area">
+            <field name="name">Hawassa Region</field>
+            <field name="code">HWS</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+        </record>
+
+        <!-- 2. Create a Sample Sales Team and Assign an Operational Area -->
+        <record id="crm_team_addis_central" model="crm.team">
+            <field name="name">Addis Ababa Central Sales</field>
+            <field name="operational_area_id" ref="op_area_addis_central"/>
+        </record>
+
+    </data>
+</odoo>

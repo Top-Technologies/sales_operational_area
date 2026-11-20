@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_operational_area_finance" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.operational.area.finance</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- 1. Add Finance Approval Buttons in the Header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_finance_approve"
+                        string="Verify &amp; Approve Payment"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state not in ('sale', 'done') or finance_approved"
+                        groups="account.group_account_invoice"/>
+                <button name="action_finance_unapprove"
+                        string="Revoke Payment Approval"
+                        type="object"
+                        class="btn-secondary"
+                        invisible="state not in ('sale', 'done') or not finance_approved"
+                        groups="account.group_account_invoice"/>
+            </xpath>
+
+            <!-- 2. Add Operational Area Field right after Sales Team -->
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="operational_area_id" options="{'no_create': True}"/>
+            </xpath>
+
+            <!-- 3. Add Finance Approved Status Field after Payment Terms -->
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="finance_approved" widget="boolean_toggle" readonly="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

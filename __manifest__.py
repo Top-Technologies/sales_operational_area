@@ -1,0 +1,20 @@
+{
+    'name': 'Sales Operational Area & Warehouse Management',
+    'version': '18.0.1.0.1',
+    'category': 'Sales',
+    'summary': 'Configurable Operational Areas assigned to Sales Teams by code, linking warehouses and reporting.',
+    'depends': ['sales_team', 'crm', 'sale_management', 'stock', 'sale_stock', 'account'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/operational_area_rules.xml',
+        'data/operational_area_data.xml',
+        'views/operational_area_views.xml',
+        'views/crm_team_views.xml',
+        'views/sale_order_views.xml',
+        'views/sale_report_views.xml',
+        'views/stock_picking_views.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
+}

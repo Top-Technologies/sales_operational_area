@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_operational_area_form" model="ir.ui.view">
+        <field name="name">operational.area.form</field>
+        <field name="model">operational.area</field>
+        <field name="arch" type="xml">
+            <form string="Operational Area">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="warehouse_id" options="{'no_create': True}"/>
+                        <field name="location_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_operational_area_tree" model="ir.ui.view">
+        <field name="name">operational.area.tree</field>
+        <field name="model">operational.area</field>
+        <field name="arch" type="xml">
+            <list string="Operational Areas">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="warehouse_id"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_operational_area" model="ir.actions.act_window">
+        <field name="name">Operational Areas</field>
+        <field name="res_model">operational.area</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Item (Fixed parent to sale.menu_sale_config) -->
+    <menuitem id="menu_operational_area"
+              name="Operational Areas"
+              parent="sale.menu_sale_config"
+              action="action_operational_area"
+              sequence="50"/>
+</odoo>

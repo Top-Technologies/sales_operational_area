@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_inherit_finance_approval" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.finance.approval</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- 1. Alert Banner on top of sheet for Outgoing Deliveries -->
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-warning mb-0 text-center" role="alert"
+                     invisible="picking_type_code != 'outgoing' or not sale_id or finance_approved">
+                    <strong>Hold:</strong> Delivery is blocked. Finance payment verification and approval is pending on linked Sales Order.
+                </div>
+                <div class="alert alert-success mb-0 text-center" role="alert"
+                     invisible="picking_type_code != 'outgoing' or not sale_id or not finance_approved">
+                    <strong>Approved:</strong> Finance payment verification completed. Inventory release is authorized.
+                </div>
+            </xpath>
+
+            <!-- 2. Show Finance Approved field in the form details -->
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="finance_approved" widget="boolean_toggle" readonly="1" invisible="not sale_id"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
